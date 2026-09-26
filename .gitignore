@@ -1,0 +1,24 @@
+node_modules/
+dist/
+.data/
+.env
+.env.*
+!.env.example
+test-results/
+playwright-report/
+
+# Local credentials and generated artifacts
+.DS_Store
+*.log
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+service-account*.json
+service_account*.json
+*-firebase-adminsdk-*.json
+*.sqlite
+*.sqlite3
+*.db
+coverage/
