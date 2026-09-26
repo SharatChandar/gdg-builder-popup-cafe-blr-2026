@@ -1,4 +1,6 @@
 import { defineConfig } from "@playwright/test";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 export default defineConfig({
   timeout: 60000,
   testDir: "./tests",
@@ -10,7 +12,14 @@ export default defineConfig({
     trace: "retain-on-failure",
   },
   webServer: {
-    command: `NODE_ENV=production DATA_STORE=pglite PORT=8082 DATA_PATH=/private/tmp/common-ground-e2e-${Date.now()} node server/index.js`,
+    command: "node server/index.js",
+    env: {
+      NODE_ENV: "production",
+      DATA_STORE: "pglite",
+      DEMO_MODE: "true",
+      PORT: "8082",
+      DATA_PATH: join(tmpdir(), `common-ground-e2e-${Date.now()}`),
+    },
     url: "http://localhost:8082/api/health",
     reuseExistingServer: false,
     timeout: 60000,
